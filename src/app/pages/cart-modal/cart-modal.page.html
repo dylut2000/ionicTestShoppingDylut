@@ -1,9 +1,77 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>cartModal</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+
+<ion-content fullScreen>
+
+
+  <div class="ion-text-end">
+    <ion-button (click)="close()" fill="clear">
+      <ion-icon name="close"></ion-icon>
+    
+    </ion-button>
+  </div>
+
+
+  <div class="ion-padding">
+
+    <ion-list>
+      <ion-item *ngFor="let p of cart">
+
+        <ion-grid>
+
+          <ion-row class="ion-align-items-center">
+
+            <ion-col size="2" class="ion-align-self-center">
+              <ion-button color="medium" fill="clear" (click)="decreaseCardItem(p)">
+                <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="1" class="ion-align-self-center">
+              {{ p.amount }}
+            </ion-col>
+
+            <ion-col size="2" class="ion-align-self-center">
+              <ion-button color="medium" fill="clear" (click)="increaseCartItem(p)">
+                <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="2" offset="5">
+              <ion-button fill="clear" color="medium" (click)="removeCartItem(p)">
+                <ion-icon slot="icon-only" name="remove-circle"></ion-icon>
+              </ion-button>
+            </ion-col>
+            
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col size="9">
+              <b>{{ p.name }}</b>
+            </ion-col>
+
+            <ion-col size="3">
+              {{ p.amount * p.price | currency: 'USD' }}
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-item>
+
+      <ion-item>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="9">
+              Total
+            </ion-col>
+            <ion-col size="3">
+              {{ getTotal() | currency: 'USD' }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+  </div>
 
 </ion-content>
